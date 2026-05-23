@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LLM Gateway — Admin Dashboard for monitoring providers, circuit breakers, and gateway health." />
+  <title>LLM Gateway — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo" id="gateway-status-dot"></div>
+        <h1>LLM Gateway</h1>
+      </div>
+      <span class="badge" id="gateway-status-badge">checking…</span>
+    </header>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-value" id="stat-configured">–</span>
+        <span class="stat-label">Configured</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="stat-total">–</span>
+        <span class="stat-label">Total Providers</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="stat-healthy">–</span>
+        <span class="stat-label">Circuits OK</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" id="stat-cors">–</span>
+        <span class="stat-label">CORS Origin</span>
+      </div>
+    </div>
+
+    <!-- Provider Grid -->
+    <section>
+      <h2 class="section-title">Providers</h2>
+      <div class="provider-grid" id="provider-grid">
+        <!-- filled by JS -->
+      </div>
+    </section>
+
+    <!-- Instructions -->
+    <section class="instructions">
+      <h2 class="section-title">Configuration</h2>
+      <p>Set API keys in <code>.env</code> and restart the server. Only providers with a key will be used for fallback routing.</p>
+      <pre><code>GROQ_API_KEY=gsk_...
+GEMINI_API_KEY=AIza...
+FRONTEND_URL=https://your-app.com</code></pre>
+    </section>
+
+    <footer>
+      <p>Auto-refreshes every 10 s &nbsp;·&nbsp; <a href="/health">/health</a> &nbsp;·&nbsp; <a href="/api/providers">/api/providers</a></p>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
