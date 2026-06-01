@@ -1,0 +1,8 @@
+services:
+  llm-gateway:
+    build: .
+    ports:
+      - "8000:5000"
+    env_file:
+      - .env
+    restart: unless-stopped
